@@ -15,9 +15,21 @@ def teste():
 
     title = soup.find('h1').text.replace('\t', '').replace('\n','')
 
-    temperatura_min = soup.find('span',id='min-temp-1').text
-    temperatura_max = soup.find('span',id='max-temp-1').text
+    temperature_min = soup.find('span',id='min-temp-1').text
+    temperature_max = soup.find('span',id='max-temp-1').text
 
-    chuva = soup.find_all('span',class_='_margin-l-5')[1].text.replace('\t', '').replace('\n','')
+    rain = soup.find_all('span',class_='_margin-l-5')[1].text.replace('\t', '').replace('\n','')
+
+    weather_SP = {'title':[], 'temperature_min':[], 'temperature_max':[], 'rain':[]}
+    
+    weather_SP['title'].append(title)
+    weather_SP['temperature_min'].append(temperature_min)
+    weather_SP['temperature_max'].append(temperature_max)
+    weather_SP['rain'].append(rain)
+      
+
+    df = pd.DataFrame(weather_SP)
+    df.to_csv('weather.csv', encoding='utf-8', sep=';')
+
 
 teste()
