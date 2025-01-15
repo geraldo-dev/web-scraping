@@ -14,6 +14,10 @@ def teste():
     # print(soup.prettify())
 
     title = soup.find('h1').text.replace('\t', '').replace('\n','')
-    
+
+    temperatura_min = soup.find('span',id='min-temp-1').text
+    temperatura_max = soup.find('span',id='max-temp-1').text
+
+    chuva = soup.find_all('span',class_='_margin-l-5')[1].text.replace('\t', '').replace('\n','')
 
 teste()
